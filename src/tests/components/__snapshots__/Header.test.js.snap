@@ -18,17 +18,5 @@ exports[`should render Header correctly 1`] = `
   >
     Create Expense 
   </[object Object]>
-  <[object Object]
-    activeClassName="is-active"
-    to="/edit"
-  >
-    Edit Expense 
-  </[object Object]>
-  <[object Object]
-    activeClassName="is-active"
-    to="/help"
-  >
-    Help 
-  </[object Object]>
 </header>
 `;
