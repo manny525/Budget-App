@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { startAddExpense ,addExpense, editExpense, removeExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
+import { startAddExpense, addExpense, editExpense, removeExpense, setExpenses, startSetExpenses, startRemoveExpense, startEditExpense } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
@@ -22,6 +22,23 @@ test('should remove expense', () => {
     })
 })
 
+test('should remove expense from firebase', (done) => {
+  const store = createMockStore({});
+  const id = expenses[2].id
+  store.dispatch(startRemoveExpense(id)).then(() => {
+    const action = store.getActions();
+    expect(action[0]).toEqual({
+    type: 'REMOVE_EXPENSE',
+    id
+  })
+  return database.ref(`expenses/${id}`).once('value')
+  }).then((snapshot) => {
+    expect(snapshot.val()).toBeFalsy();
+    done();
+  });
+})
+
+
 test('should edit expense', () => {
     const action = editExpense('1234dance', { note: 'uthale rey baba' })
     expect(action).toEqual({
@@ -32,6 +49,25 @@ test('should edit expense', () => {
         }
     })
 })
+
+test('should edit expense in database', (done) => {
+  const store = createMockStore({});
+  const id = expenses[0].id;
+  const updates = { amount: 12000 };
+  store.dispatch(startEditExpense(id, updates)).then(() => {
+    const action = store.getActions();
+    expect(action[0]).toEqual({
+      type: 'EDIT_EXPENSE',
+      id,
+      updates
+    })
+    return database.ref(`expenses/${id}`).once('value');
+  }).then((snapshot) => {
+    expect(snapshot.val().amount).toBe(updates.amount)
+    done();
+  })
+})
+
 
 test('should add expense with provided values', () => {
     const action = addExpense(expenses[2]);
@@ -113,7 +149,6 @@ test('should add expense to database and store', (done) => {
     })
   })
   
-
 // test('should add expense with default values', () => {
 //     const action = startAddExpense()
 //     expect(action).toEqual({
