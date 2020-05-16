@@ -22,6 +22,7 @@
     "express": "4.15.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "firebase": "^7.14.3",
+    "history": "^4.10.1",
     "js-yaml": "3.13.1",
     "moment": "^2.25.3",
     "node-sass": "^4.14.0",
