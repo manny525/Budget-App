@@ -1,0 +1,23 @@
+.box-layout {
+    align-items: flex-start;
+    background: url('/Images/Expense-bg.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    height: 100vh;
+    width: 100vw;
+}
+
+.box-layout__box {
+    background: fade-out(white, 0.15);
+    border-radius: 3px;
+    padding: $ssize $ssize;
+    text-align: center;
+    width: 30rem;
+    height: 15rem;
+}
+
+.box-layout__title {
+    margin: 0 0 0 0;
+    line-height: 1;
+}

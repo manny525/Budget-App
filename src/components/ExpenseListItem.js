@@ -3,14 +3,13 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 
 const ExpenseListItem = (props) => (
-    <div>
-        <Link to={`/edit/${props.id}`}><h3>{props.description}</h3></Link>
-        <p>
-            ₹{props.amount}
-            -
-            {moment(props.createdAt).format('MMMM Do, YYYY')}
-        </p>
-    </div>
+    <Link className='list-item' to={`/edit/${props.id}`}>
+        <div>
+            <h3 className='list-item__title'>{props.description}</h3>
+            <span className='list-item__subtitle'>{moment(props.createdAt).format('MMMM Do, YYYY')}</span>
+        </div>
+        <h3 className='list-item__data'>₹{props.amount}</h3>
+    </Link>
 )
 
 export default ExpenseListItem;
