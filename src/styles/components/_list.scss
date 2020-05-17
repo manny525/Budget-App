@@ -1,6 +1,6 @@
 .list-header {
-    background: #f7f7f7;
-    border: 1px solid darken(#f7f7f7, 7%);
+    background: $off-white;
+    border: 1px solid darken($off-white, 7%);
     color: $grey;
     display: flex;
     justify-content: space-between;
@@ -15,7 +15,7 @@
 }
 
 .list-item {
-    border-radius: 1px sold darken(#f7f7f7, 7%);
+    border-radius: 1px sold darken($off-white, 7%);
     border-top: none;
     color: $dark-grey;
     display: flex;
@@ -24,7 +24,7 @@
     text-decoration: none;
     transition: background .3s ease;
     &:hover {
-        background: #f7f7f7;
+        background: $off-white;
     }
     @media (min-width: $desktop-breakpoint) {
         align-items: center;
